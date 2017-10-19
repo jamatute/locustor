@@ -1,1 +1,5 @@
 locustio
+tabulate
+argcomplete
+pytest
+pytest-cov
