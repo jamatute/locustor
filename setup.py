@@ -13,4 +13,7 @@ setup(
     license='GPLv2',
     packages=['locustor'],
     long_description=open('README.md').read(),
+    entry_points={
+      'console_scripts': ['locustor = locustor:main']
+    }
 )

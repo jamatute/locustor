@@ -1,7 +1,7 @@
 import unittest
-from taskban.reports import KanbanReport, Report
+from locustor.locustor import Locustor
 
 
-class TestReport(unittest.TestCase):
+class TestLocustor(unittest.TestCase):
     def setUp(self):
-        self.report = Report('1d')
+        self.locustor = Locustor()

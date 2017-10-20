@@ -3,3 +3,4 @@ tabulate
 argcomplete
 pytest
 pytest-cov
+pyyaml

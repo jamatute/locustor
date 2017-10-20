@@ -22,10 +22,9 @@ from locustor.cli_arguments import load_logger, load_parser, load_config
 def main():
     parser = load_parser()
     args = parser.parse_args()
-    log = load_logger(args)
-    config = load_config(log)
-
-    report = Locustor()
+    # log = load_logger(args)
+    # config = load_config(log)
+    # report = Locustor()
 
 if __name__ == "__main__":
     main()
