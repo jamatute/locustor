@@ -33,20 +33,6 @@ def load_parser():
     return parser
 
 
-def load_config(log):
-    try:
-        config_file = os.path.expanduser("~/.config/taskban/taskban.yml")
-        with open(config_file, 'r') as f:
-            try:
-                config = yaml.safe_load(f)
-            except yaml.YAMLError as e:
-                log.error(e)
-                sys.exit(1)
-            return config
-    except FileNotFoundError as e:
-        log.warning('Error opening config file {}'.format(config_file))
-
-
 def load_logger(args):
     logging.addLevelName(logging.INFO, "[\033[36m+\033[0m]")
     logging.addLevelName(logging.ERROR, "[\033[31m+\033[0m]")

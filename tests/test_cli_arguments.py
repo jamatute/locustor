@@ -34,7 +34,21 @@ class TestArgparse(unittest.TestCase):
     #     self.assertEqual(self.args.subcommand, 'compare')
 
 
-# class TestLogger(TestArgparse):
-#     def setUp(self):
-#         self.args = self.parser.parse_args(['run', 'https://github.com'])
-#         self.log = load_logger(self.args)
+class TestLogger(TestArgparse):
+    def setUp(self):
+        self.parser = load_parser()
+        self.args = self.parser.parse_args(['run', 'https://github.com'])
+        self.log = load_logger(self.args)
+
+    def test_logger_exist(self):
+        self.assertEqual(str(type(self.log)), "<class 'logging.Logger'>")
+
+
+class TestLogger(TestArgparse):
+    def setUp(self):
+        self.parser = load_parser()
+        self.args = self.parser.parse_args(['run', 'https://github.com'])
+        self.log = load_logger(self.args)
+
+    def test_logger_exist(self):
+        self.assertEqual(str(type(self.log)), "<class 'logging.Logger'>")

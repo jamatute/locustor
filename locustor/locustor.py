@@ -1,3 +1,4 @@
+import os
 import csv
 import sys
 import math
@@ -5,19 +6,29 @@ import time
 import subprocess
 from tabulate import tabulate
 
-url = 'http://www.fake-activate.com'
-user_cases = [10, 50, 70, 100, 500]
 
 class Locustor():
+    def __init__(self, url, locust_file='locustfile.py',
+                 work_dir=os.path.expanduser('~/.local/share/locustor'),
+                 user_cases=[10, 50, 70, 100, 500]):
+        self.url = url
+        self.locust_file = locust_file
+        self.work_dir = work_dir
+        self.user_cases = user_cases
 
-    def run_test(url, user_cases):
-        for num_users in user_cases:
-            rc = subprocess.call(
-                'locust --no-web -c {} -r {} -n {} --csv={}.csv --host={}'.format(
-                    num_users, math.ceil(num_users/10), num_users*10,
-                    num_users, url), shell=True)
+    def run(self):
+        for num_users in self.user_cases:
+            cmd_str = 'locust --no-web -f {} -c {} -r {} -n {} ' + \
+                             '--csv={}/{}.csv --host={}'
+            cmd_str = cmd_str.format(self.locust_file, num_users,
+                                     math.ceil(num_users/10), num_users*10,
+                                     self.work_dir, num_users, self.url)
+            rc = subprocess.call(cmd_str, stderr=open(os.devnull, 'wb'),
+                                 shell=True)
+
             if rc != 0:
-                print('Error running {} users in {}'.format(num_users, url))
+                print('Error running {} users in {}'.format(num_users,
+                                                            self.url))
                 sys.exit(1)
             time.sleep(30)
 

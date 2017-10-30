@@ -16,15 +16,19 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from locustor.cli_arguments import load_logger, load_parser, load_config
+from locustor.cli_arguments import load_logger, load_parser
+# from locustor.locustor import Locustor
 
 
 def main():
     parser = load_parser()
     args = parser.parse_args()
-    # log = load_logger(args)
-    # config = load_config(log)
+    try:
+        load_logger(args)
+    except AttributeError:
+        parser.print_help()
     # report = Locustor()
+
 
 if __name__ == "__main__":
     main()
