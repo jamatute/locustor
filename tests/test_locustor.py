@@ -17,8 +17,7 @@ class TestLocustor(unittest.TestCase):
         self.tmp_dir = tempfile.mkdtemp(dir='tests/test_data')
         self.locustor = Locustor(test_url,
                                  locust_file=test_locustfile,
-                                 work_dir=self.tmp_dir,
-                                 user_cases=test_user_case)
+                                 work_dir=self.tmp_dir)
 
     def tearDown(self):
         try:
@@ -45,13 +44,6 @@ class TestLocustor(unittest.TestCase):
     def test_locustor_can_set_work_dir(self):
         self.assertEqual(self.locustor.work_dir, self.tmp_dir)
 
-    def test_locustor_has_default_user_cases(self):
-        self.locustor = Locustor(test_url)
-        self.assertEqual(self.locustor.user_cases, [10, 50, 70, 100, 500])
-
-    def test_locustor_can_set_user_case(self):
-        self.assertEqual(self.locustor.user_cases, test_user_case)
-
     @pytest.mark.skip(reason="Too long to test")
     def test_locustor_run_method(self):
         self.host = testinfra.get_host("local://localhost")
@@ -68,9 +60,8 @@ class TestLocustor(unittest.TestCase):
         self.assertTrue(file.contains(
             '"Method","Name","# requests","# failures","Medi'))
 
-class TestLocustorLoad(TestLocustor):
-    def setUp(self):
 
+class TestLocustorLoad(TestLocustor):
     def test_load_data_default_to_new(self):
         self.locustor.work_dir = 'tests/test_data'
         self.load()
