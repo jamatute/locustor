@@ -8,7 +8,7 @@ import subprocess
 from tabulate import tabulate
 
 
-class Locustor():
+class Locustor:
     """
         host: Host to load test in the following format: http://10.21.32.33
 
@@ -25,14 +25,14 @@ class Locustor():
         inform_name: File name of csv inform
 
     """
+
     def __init__(self,
                  host,
-                 locust_file='locustfile.py',
+                 locust_file='generic_locustfile.py',
                  work_dir=os.path.expanduser('~/.local/share/locustor'),
                  num_clients=10,
                  hatch_rate=10,
-                 run_time='60s',
-                 inform_name='locust-inform'):
+                 run_time='60s'):
 
         self.host = host
         self.locust_file = locust_file
@@ -40,25 +40,27 @@ class Locustor():
         self.num_clients = num_clients
         self.run_time = run_time
         self.hatch_rate = hatch_rate
-        self.inform_name = '+'.join(inform_name, datetime.datetime.now)
+        self.inform_name = 'inform_name-{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
 
     def run(self):
         cmd_str = 'locust ' \
                   '--no-web ' \
                   '-f {locust_file} ' \
-                  '-c {num_clients}' \
+                  '-c {num_clients} ' \
                   '-r {hatch_rate} ' \
-                  '-t {run_time} ' + \
-                  '--csv={work_dir}/{inform_name}.csv ' \
+                  '-t {run_time} ' \
+                  '--csv={work_dir}/{inform_name} ' \
                   '--host={host}'.format(locust_file=self.locust_file,
-                                 num_clients = self.num_clients,
-                                 hatch_rate = self.hatch_rate,
-                                 run_time = self.run_time,
-                                 work_dir = self.work_dir,
-                                 inform_name = self.inform_name,
-                                 host=self.host)
+                                         num_clients=self.num_clients,
+                                         hatch_rate=self.hatch_rate,
+                                         run_time=self.run_time,
+                                         work_dir=self.work_dir,
+                                         inform_name=self.inform_name,
+                                         host=self.host)
 
-        rc = subprocess.call(cmd_str, stderr=open(os.devnull, 'wb'),
+        rc = subprocess.call(cmd_str,
+                             stderr=subprocess.STDOUT,
+                             # stderr=open(os.devnull, 'wb'),
                              shell=True)
         if rc != 0:
             print('Error running in {}'.format(self.host))

@@ -16,17 +16,17 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from locustor.cli_arguments import load_logger, load_parser
-
-
-def main():
-    parser = load_parser()
-    args = parser.parse_args()
-    try:
-        load_logger(args)
-    except AttributeError:
-        parser.print_help()
-
-
-if __name__ == "__main__":
-    main()
+# from locustor.cli_arguments import load_logger, load_parser
+#
+#
+# def main():
+#     parser = load_parser()
+#     args = parser.parse_args()
+#     try:
+#         load_logger(args)
+#     except AttributeError:
+#         parser.print_help()
+#
+#
+# if __name__ == "__main__":
+#     main()
