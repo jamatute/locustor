@@ -1,0 +1,24 @@
+"Name","# requests","50%","66%","75%","80%","90%","95%","98%","99%","100%"
+"GET /bundle/bundle-item-charging/",25,96,780,1400,1400,1400,2300,2400,2400,2400
+"GET /bundle/bundle-item/",25,1300,2500,2500,2600,3600,4000,4900,4900,4900
+"GET /bundle/bundle/",28,3300,4700,5000,5100,5700,5700,7000,7000,7000
+"/bundle/bundle/filters/",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"GET /bundle/charging/",29,550,770,830,880,1000,1100,1600,1600,1600
+"GET /bundle/clean-cache/",28,64,76,86,92,110,110,130,130,130
+"GET /bundle/company/",29,75,99,100,100,110,120,160,160,160
+"GET /bundle/product-broadband/",29,67,70,72,90,100,100,120,120,120
+"/bundle/product-broadband/%7Bid%7D",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"GET /bundle/product-data/",30,65,75,120,130,150,150,160,160,160
+"/bundle/product-data/%7Bid%7D",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"GET /bundle/product-offering-item/",25,3400,4800,5000,5200,5200,5400,5600,5600,5600
+"GET /bundle/product-offering/",29,100,690,700,1200,2100,2300,2300,2300,2300
+"/bundle/product-offering/%7Bid%7D",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"/bundle/product-offering/filters/",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"GET /bundle/product-service/",29,67,69,71,88,97,98,110,110,110
+"GET /bundle/product-voice/",29,67,69,76,81,100,120,140,140,140
+"GET /bundle/tag-category/",25,70,75,80,84,88,90,120,120,120
+"/bundle/tag-category/%7Bid%7D",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"GET /bundle/tag-relationship/",30,2300,3100,5400,6500,8700,8700,9600,9600,9600
+"GET /bundle/tag/",30,360,400,2300,2600,4700,6000,6400,6400,6400
+"/bundle/tag/%7Bid%7D",0,"N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"
+"Total",420,98,250,1200,1800,3400,5100,6000,7000,9600

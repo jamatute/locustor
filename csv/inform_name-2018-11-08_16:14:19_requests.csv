@@ -1,0 +1,24 @@
+"Method","Name","# requests","# failures","Median response time","Average response time","Min response time","Max response time","Average Content Size","Requests/s"
+"GET","/bundle/bundle-item-charging/",25,0,96,641,65,2392,9387,0.42
+"GET","/bundle/bundle-item/",25,0,1300,1540,78,4921,55876,0.42
+"GET","/bundle/bundle/",28,0,3300,3578,220,7002,68429,0.47
+"GET","/bundle/bundle/filters/",0,28,0,0,0,0,0,0.00
+"GET","/bundle/charging/",29,0,550,502,64,1572,8505,0.49
+"GET","/bundle/clean-cache/",28,0,64,75,59,131,3,0.47
+"GET","/bundle/company/",29,0,75,86,64,163,3,0.49
+"GET","/bundle/product-broadband/",29,0,67,73,60,116,2077,0.49
+"GET","/bundle/product-broadband/%7Bid%7D",0,25,0,0,0,0,0,0.00
+"GET","/bundle/product-data/",30,0,65,85,60,163,2778,0.51
+"GET","/bundle/product-data/%7Bid%7D",0,30,0,0,0,0,0,0.00
+"GET","/bundle/product-offering-item/",25,0,3400,3617,1676,5582,57279,0.42
+"GET","/bundle/product-offering/",29,0,100,562,65,2305,25488,0.49
+"GET","/bundle/product-offering/%7Bid%7D",0,30,0,0,0,0,0,0.00
+"GET","/bundle/product-offering/filters/",0,29,0,0,0,0,0,0.00
+"GET","/bundle/product-service/",29,0,67,72,59,108,137,0.49
+"GET","/bundle/product-voice/",29,0,67,74,59,137,495,0.49
+"GET","/bundle/tag-category/",25,0,70,75,66,119,3,0.42
+"GET","/bundle/tag-category/%7Bid%7D",0,29,0,0,0,0,0,0.00
+"GET","/bundle/tag-relationship/",30,0,2200,2749,132,9602,87089,0.51
+"GET","/bundle/tag/",30,0,360,1319,131,6441,87670,0.51
+"GET","/bundle/tag/%7Bid%7D",0,25,0,0,0,0,0,0.00
+"None","Total",420,196,98,984,59,9602,27072,7.08
