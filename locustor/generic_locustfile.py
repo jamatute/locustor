@@ -5,7 +5,7 @@ from locust import task
 
 class Tasks(TaskSet):
     swagger_file = '/swagger.json'
-    host = 'http://pre-saigon-int.lowi.es:8080/bundle'
+    host = 'http://example:8080/example'
 
     @task
     def index(self):
@@ -25,7 +25,7 @@ class Tasks(TaskSet):
 
 
 class WebsiteUser(HttpLocust):
-    host = 'http://pre-saigon-int.lowi.es:8080/bundle'
+    host = 'http://example:8080/example'
     task_set = Tasks
     min_wait = 5000
     max_wait = 9000
