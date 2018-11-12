@@ -1,11 +1,9 @@
 import datetime
+import json
 import os
-import csv
 import sys
-import math
-import time
 import subprocess
-from tabulate import tabulate
+import time
 
 
 class Locustor:
@@ -28,7 +26,7 @@ class Locustor:
 
     def __init__(self,
                  host,
-                 locust_file=os.path.dirname(os.path.abspath(__file__))+'/generic_locustfile.py',
+                 locust_file=os.path.dirname(os.path.abspath(__file__)) + '/generic_locustfile.py',
                  work_dir=os.path.expanduser('~/.local/share/locustor'),
                  num_clients=10,
                  hatch_rate=10,
@@ -41,6 +39,7 @@ class Locustor:
         self.run_time = run_time
         self.hatch_rate = hatch_rate
         self.inform_name = 'inform_name-{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+        self.fail_ratio = 1.0
 
     def _check_csv_file(self):
         if not os.path.exists(self.work_dir):
@@ -53,7 +52,7 @@ class Locustor:
                   '-c {num_clients} ' \
                   '-r {hatch_rate} ' \
                   '-t {run_time} ' \
-                  '--csv={work_dir}/{inform_name} ' \
+                  '--json={work_dir}/{inform_name} ' \
                   '--host={host}'.format(locust_file=self.locust_file,
                                          num_clients=self.num_clients,
                                          hatch_rate=self.hatch_rate,
@@ -64,6 +63,8 @@ class Locustor:
 
         self._check_csv_file()
 
+        print('Sentence: {}'.format(cmd_str))
+
         rc = subprocess.call(cmd_str,
                              stderr=subprocess.STDOUT,
                              shell=True)
@@ -72,33 +73,15 @@ class Locustor:
             sys.exit(1)
         time.sleep(30)
 
-    def load(self, load_name='new', load_dir=None):
-        if load_dir is None:
-            load_dir = self.work_dir
+    def get_json(self):
+        file = open('{work_dir}/{inform_name}_result.json'.format(work_dir=self.work_dir, inform_name=self.inform_name),
+                    'r')
+        inform = json.loads(file.read())
+        return inform
 
-        csv_files = [f for f in os.listdir(self.work_dir)
-                     if os.path.isfile(os.path.join(self.work_dir, f)) and
-                     os.path.splitext(f)[-1] == '.csv']
+    def get_result(self):
+        inform = self.get_json()
+        return inform.get('fail_ratio') < self.fail_ratio or False
 
-        for csv_file in csv_files:
-            if 'distribution' in csv_file:
-                csv_file_type = 'distribution'
-            elif 'requests' in csv_file:
-                csv_file_type = 'summary'
-
-            # use_case =
-
-            # with open(csv_file, 'r') as f:
-            #     self.data = csv.reader(f)
-            #     data = list(reader)
-            #     print('\n## Test case of {} users'.format(num_users))
-            #     print(tabulate(data[1:], headers=data[0]))
-
-    # def show(self):
-    #     print('# Test results for {}'.format(self.url))
-    #     for num_users in self.user_cases:
-    #         with open('{}.csv_requests.csv'.format(num_users), 'r') as f:
-    #             reader = csv.reader(f)
-    #             data = list(reader)
-    #             print('\n## Test case of {} users'.format(num_users))
-    #             print(tabulate(data[1:], headers=data[0]))
+    def show(self):
+        print(self.get_json())
