@@ -53,6 +53,7 @@ class Locustor:
                   '-r {hatch_rate} ' \
                   '-t {run_time} ' \
                   '--json={work_dir}/{inform_name} ' \
+                  '--csv={work_dir}/{inform_name} ' \
                   '--host={host}'.format(locust_file=self.locust_file,
                                          num_clients=self.num_clients,
                                          hatch_rate=self.hatch_rate,
@@ -82,6 +83,3 @@ class Locustor:
     def get_result(self):
         inform = self.get_json()
         return inform.get('fail_ratio') < self.fail_ratio or False
-
-    def show(self):
-        print(self.get_json())

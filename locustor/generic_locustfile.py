@@ -6,7 +6,7 @@ class Tasks(TaskSet):
 
     @task
     def index(self):
-        self.client.get('/bundle/')
+        self.client.get('/')
 
 
 class WebsiteUser(HttpLocust):

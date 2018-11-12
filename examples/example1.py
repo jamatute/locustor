@@ -9,4 +9,3 @@ locustor = Locustor(host='http://pre-saigon-int.lowi.es:8080/bundle',
 locustor.run()
 locustor.get_json()
 locustor.get_result()
-locustor.show()
