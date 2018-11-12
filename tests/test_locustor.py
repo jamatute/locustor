@@ -61,21 +61,21 @@ class TestLocustor(unittest.TestCase):
             '"Method","Name","# requests","# failures","Medi'))
 
 
-class TestLocustorLoad(TestLocustor):
-    def test_load_data_default_to_new(self):
-        self.locustor.work_dir = 'tests/test_data'
-        self.load()
-        self.assertEqual(self.data['new']['1']['distribution'](1)(1), 10)
-        self.assertEqual(self.data['new']['1']['summary'](1)(2), 10)
-
-    def test_load_data_in_old_register(self):
-        self.locustor.work_dir = 'tests/test_data'
-        self.load('old')
-        self.assertEqual(self.data['old']['1']['distribution'](1)(1), 10)
-        self.assertEqual(self.data['old']['1']['summary'](1)(2), 10)
-
-    def test_load_data_from_different_directory(self):
-        self.locustor.work_dir = 'tests/test_data'
-        self.load('old', load_dir='tests/tests_data/test_case_2')
-        self.assertEqual(self.data['new']['1']['distribution'](1)(1), 20)
-        self.assertEqual(self.data['new']['1']['summary'](1)(2), 20)
+# class TestLocustorLoad(TestLocustor):
+    # def test_load_data_default_to_new(self):
+    #     self.locustor.work_dir = 'tests/test_data'
+    #     self.load()
+    #     self.assertEqual(self.data['new']['1']['distribution'](1)(1), 10)
+    #     self.assertEqual(self.data['new']['1']['summary'](1)(2), 10)
+    #
+    # def test_load_data_in_old_register(self):
+    #     self.locustor.work_dir = 'tests/test_data'
+    #     self.load('old')
+    #     self.assertEqual(self.data['old']['1']['distribution'](1)(1), 10)
+    #     self.assertEqual(self.data['old']['1']['summary'](1)(2), 10)
+    #
+    # def test_load_data_from_different_directory(self):
+    #     self.locustor.work_dir = 'tests/test_data'
+    #     self.load('old', load_dir='tests/tests_data/test_case_2')
+    #     self.assertEqual(self.data['new']['1']['distribution'](1)(1), 20)
+    #     self.assertEqual(self.data['new']['1']['summary'](1)(2), 20)

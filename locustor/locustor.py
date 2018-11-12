@@ -28,7 +28,7 @@ class Locustor:
 
     def __init__(self,
                  host,
-                 locust_file='generic_locustfile.py',
+                 locust_file=os.path.dirname(os.path.abspath(__file__))+'/generic_locustfile.py',
                  work_dir=os.path.expanduser('~/.local/share/locustor'),
                  num_clients=10,
                  hatch_rate=10,
@@ -41,6 +41,10 @@ class Locustor:
         self.run_time = run_time
         self.hatch_rate = hatch_rate
         self.inform_name = 'inform_name-{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+
+    def _check_csv_file(self):
+        if not os.path.exists(self.work_dir):
+            os.makedirs(self.work_dir)
 
     def run(self):
         cmd_str = 'locust ' \
@@ -58,9 +62,10 @@ class Locustor:
                                          inform_name=self.inform_name,
                                          host=self.host)
 
+        self._check_csv_file()
+
         rc = subprocess.call(cmd_str,
                              stderr=subprocess.STDOUT,
-                             # stderr=open(os.devnull, 'wb'),
                              shell=True)
         if rc != 0:
             print('Error running in {}'.format(self.host))
@@ -89,11 +94,11 @@ class Locustor:
             #     print('\n## Test case of {} users'.format(num_users))
             #     print(tabulate(data[1:], headers=data[0]))
 
-    def show(self):
-        print('# Test results for {}'.format(self.url))
-        for num_users in self.user_cases:
-            with open('{}.csv_requests.csv'.format(num_users), 'r') as f:
-                reader = csv.reader(f)
-                data = list(reader)
-                print('\n## Test case of {} users'.format(num_users))
-                print(tabulate(data[1:], headers=data[0]))
+    # def show(self):
+    #     print('# Test results for {}'.format(self.url))
+    #     for num_users in self.user_cases:
+    #         with open('{}.csv_requests.csv'.format(num_users), 'r') as f:
+    #             reader = csv.reader(f)
+    #             data = list(reader)
+    #             print('\n## Test case of {} users'.format(num_users))
+    #             print(tabulate(data[1:], headers=data[0]))
