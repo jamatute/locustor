@@ -28,10 +28,6 @@ class TestArgparse(unittest.TestCase):
                                             'https://github.com'])
         self.assertEqual(self.args.user_cases, ['5', '25'])
 
-    def test_compare_tescase_exists(self):
-        self.args = self.parser.parse_args(['compare', 'https://github.com'])
-        self.assertEqual(self.args.subcommand, 'compare')
-
 
 class TestLogger(TestArgparse):
     def setUp(self):
