@@ -1,11 +1,8 @@
-import io
 import os
 import errno
 import shutil
 import tempfile
 import unittest
-import pytest
-import testinfra
 from mock import patch
 
 from locustor.locustor import Locustor

@@ -1,6 +1,6 @@
 from locustor.locustor import Locustor
 
-locustor = Locustor(host='http://pre-saigon-int.lowi.es:8080/bundle',
+locustor = Locustor(host='http://www.google.es',
                     work_dir='../test_json',
                     num_clients=10,
                     hatch_rate=50,
