@@ -44,15 +44,15 @@ class TestLocustor(unittest.TestCase):
     def test_locustor_can_set_work_dir(self):
         self.assertEqual(self.locustor.work_dir, self.tmp_dir)
 
-    def test_locustor_run_method_ok(self):
-        self.locustor.inform_name = 'test'
+    def test_locustor_run_ok(self):
+        self.locustor.informe_name = 'test'
         self.locustor.run_time = '1s'
         self.locustor.run()
         self.assertTrue(os.path.exists('{}/test_distribution.csv'.format(self.locustor.work_dir)))
         self.assertTrue(os.path.exists('{}/test_requests.csv'.format(self.locustor.work_dir)))
         self.assertTrue(os.path.exists('{}/test_result.json'.format(self.locustor.work_dir)))
 
-    def test_locustor_run_method_ko(self):
+    def test_locustor_run_ko(self):
         self.locustor.locust_file = None
         with self.assertRaises(SystemExit) as cm:
             self.locustor.run()
@@ -60,16 +60,20 @@ class TestLocustor(unittest.TestCase):
         self.assertEqual(cm.exception.code, 1)
 
     @patch('locustor.locustor.Locustor.get_json')
-    def test_locustor_get_result(self, mock_get_json):
+    def test_locustor_get_result_ok(self, mock_get_json):
         self.locustor.fail_ratio = 1.0
         mock_get_json.return_value = {"fail_ratio": 0.0}
         self.assertTrue(self.locustor.get_result())
+
+    @patch('locustor.locustor.Locustor.get_json')
+    def test_locustor_get_result_ko(self, mock_get_json):
+        self.locustor.fail_ratio = 1.0
         mock_get_json.return_value = {"fail_ratio": 10.0}
         self.assertFalse(self.locustor.get_result())
 
     def test_locustor_get_json(self):
         self.locustor.work_dir = 'test_data/test_case_3'
-        self.locustor.inform_name = 'inform_name-test_ok'
+        self.locustor.informe_name = 'informe_name-test_ok'
         json = self.locustor.get_json()
         self.assertIsInstance(json, dict)
         self.assertTrue(json)

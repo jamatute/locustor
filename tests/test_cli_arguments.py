@@ -1,3 +1,4 @@
+import logging
 import unittest
 from locustor.cli_arguments import load_logger, load_parser
 
@@ -37,3 +38,27 @@ class TestLogger(TestArgparse):
 
     def test_logger_exist(self):
         self.assertEqual(str(type(self.log)), "<class 'logging.Logger'>")
+
+    @unittest.skip("reason for skipping")
+    def test_verbose(self):
+        self.args = self.parser.parse_args(['run', 'https://github.com'])
+        logger = load_logger(self.args)
+        self.assertEqual(logger.getEffectiveLevel(), 30)
+
+    @unittest.skip("reason for skipping")
+    def test_verbose_info(self):
+        self.args = self.parser.parse_args(['run', 'https://github.com', '-v=1', '-q=False'])
+        logger = load_logger(self.args)
+        self.assertEqual(logger.getEffectiveLevel(), 20)
+
+    @unittest.skip("reason for skipping")
+    def test_verbose_debug(self):
+        self.args = self.parser.parse_args(['run', 'https://github.com', '-v=2', '-q=False'])
+        logger = load_logger(self.args)
+        self.assertEqual(logger.getEffectiveLevel(), 10)
+
+    @unittest.skip("reason for skipping")
+    def test_verbose_error(self):
+        self.args = self.parser.parse_args(['run', 'https://github.com', 'True'])
+        logger = load_logger(self.args)
+        self.assertEqual(logger.getEffectiveLevel(), 40)

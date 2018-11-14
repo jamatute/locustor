@@ -20,7 +20,7 @@ class Locustor:
 
         work_dir: Destination to csv file
 
-        inform_name: File name of csv inform
+        informe_name: File name of csv informe
 
     """
 
@@ -38,7 +38,7 @@ class Locustor:
         self.num_clients = num_clients
         self.run_time = run_time
         self.hatch_rate = hatch_rate
-        self.inform_name = 'inform_name-{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+        self.informe_name = 'informe_name-{}'.format(datetime.datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
         self.fail_ratio = 1.0
 
     def _check_csv_file(self):
@@ -52,14 +52,14 @@ class Locustor:
                   '-c {num_clients} ' \
                   '-r {hatch_rate} ' \
                   '-t {run_time} ' \
-                  '--json={work_dir}/{inform_name} ' \
-                  '--csv={work_dir}/{inform_name} ' \
+                  '--json={work_dir}/{informe_name} ' \
+                  '--csv={work_dir}/{informe_name} ' \
                   '--host={host}'.format(locust_file=self.locust_file,
                                          num_clients=self.num_clients,
                                          hatch_rate=self.hatch_rate,
                                          run_time=self.run_time,
                                          work_dir=self.work_dir,
-                                         inform_name=self.inform_name,
+                                         informe_name=self.informe_name,
                                          host=self.host)
 
         self._check_csv_file()
@@ -75,11 +75,11 @@ class Locustor:
         time.sleep(30)
 
     def get_json(self):
-        file = open('{work_dir}/{inform_name}_result.json'.format(work_dir=self.work_dir, inform_name=self.inform_name),
+        file = open('{work_dir}/{informe_name}_result.json'.format(work_dir=self.work_dir, informe_name=self.informe_name),
                     'r')
-        inform = json.loads(file.read())
-        return inform
+        informe = json.loads(file.read())
+        return informe
 
     def get_result(self):
-        inform = self.get_json()
-        return inform.get('fail_ratio') < self.fail_ratio or False
+        informe = self.get_json()
+        return informe.get('fail_ratio') < self.fail_ratio or False
