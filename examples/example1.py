@@ -8,4 +8,4 @@ locustor = Locustor(host='http://www.google.es',
 
 locustor.run()
 locustor.get_json()
-print('Pasa el test:{}'.format(locustor.get_result()))
+print('Result:{}'.format(locustor.get_result()))
