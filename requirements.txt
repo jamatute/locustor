@@ -11,7 +11,7 @@ gevent==1.3.7
 greenlet==0.4.15
 idna==2.7
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 -e git+https://github.com/rbenvos/locust.git@ee69e9f95b985b16548ca7fb792adb2a267fa4ff#egg=locustio
 MarkupSafe==1.1.0
 more-itertools==4.3.0
